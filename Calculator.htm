@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    body{
+        margin: 0 auto;
+        padding: 12vh;
+    }
+    .container {
+    max-width: 400px;
+    margin: 0 auto 0 auto;
+    }
+
+    #result {
+    text-align: right;
+    height: 70px;
+    line-height: 70px;
+    padding: 16px 8px;
+    font-size: 25px;
+    border: 3px solid #999;
+    }
+
+    #buttons{
+    display: grid;
+    border-bottom: 1px solid #999;
+    border-left: 1px solid#999;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    }       
+    button {
+    border: 0.5px solid #999;
+    line-height: 100px;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    }       
+
+    #equals{
+        background-color:blue;
+    }
+
+    </style>
+
+</head>
+<body>
+
+<div class='container'>
+
+    <div id="result"></div>
+
+    <div id="buttons">
+    <button value="1" id="one">1</button>
+    <button value="2" id="two">2</button>
+    <button value="3" id="three">3</button>
+    <button value="+" id="plus">+</button>
+    <button value="4" id="four">4</button>
+    <button value="5" id="five">5</button>
+    <button value="6" id="six">6</button>
+    <button value="-" id="minus">-</button>
+    <button value="7" id="seven">7</button>
+    <button value="8" id="eight">8</button>
+    <button value="9" id="nine">9</button>
+    <button value="/" id="divide">/</button>
+    <button value="C" id="clear">C</button>
+    <button value="0" id="zero">0</button>
+    <button value="=" id="equals">=</button>
+    <button value="*" id="multiply">*</button>
+    </div>
+
+</div>
+
+
+<script>
+    const displayArr = [];
+    const resultDisplay = document.getElementById('result');
+  
+    document.getElementById('equals').addEventListener('click',processCalc)
+    document.getElementById('one').addEventListener('click',processBtn);
+    document.getElementById('two').addEventListener('click',processBtn);
+    document.getElementById('three').addEventListener('click',processBtn);
+    document.getElementById('four').addEventListener('click',processBtn);
+    document.getElementById('five').addEventListener('click',processBtn);
+    document.getElementById('six').addEventListener('click',processBtn);
+    document.getElementById('seven').addEventListener('click',processBtn);
+    document.getElementById('eight').addEventListener('click',processBtn);
+    document.getElementById('nine').addEventListener('click',processBtn);
+    document.getElementById('zero').addEventListener('click',processBtn);
+    document.getElementById('minus').addEventListener('click',processBtn);
+    document.getElementById('multiply').addEventListener('click',processBtn);
+    document.getElementById('divide').addEventListener('click',processBtn);
+    document.getElementById('plus').addEventListener('click',processBtn);
+    document.getElementById('clear').addEventListener('click',processClear);
+   
+    function processBtn(){
+        displayArr.push(this.value);
+        const display = displayArr.join('');
+        resultDisplay.innerText = display;
+        event.preventDefault();
+    }
+
+    function processCalc(){
+        const display = displayArr.join('');
+        resultDisplay.innerText = eval(display).toFixed(2);
+        event.preventDefault();
+    }
+
+    function processClear(){
+        displayArr.splice(0,displayArr.length);
+        resultDisplay.innerText = displayArr;
+        event.preventDefault();
+        
+    }
+    
+</script>
+   
+    
+</body>
+</html>
